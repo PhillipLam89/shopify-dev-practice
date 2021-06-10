@@ -22,7 +22,7 @@
 </header>
 
 <div class="giftcard-wrapper">
-  <main class="giftcard" role="main">
+  {% comment %} <main class="giftcard" role="main">
     <div class="giftcard__wrap">
       <img src="{{ 'gift-card/card.jpg' | shopify_asset_url }}" alt="">
 
@@ -47,7 +47,7 @@
             readonly />
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
 
     <p class="text-center">
       {{ 'gift_cards.issued.redeem_html' | t: value: formatted_initial_value_stripped }}
