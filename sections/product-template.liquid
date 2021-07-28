@@ -1,3 +1,14 @@
+{% for tag in product.tags %}
+
+	{% if tag contains 'affiliate' %}
+		{% assign isAffiliated = true %}
+		{% assign linkz = tag | split: '_' %}
+		{% assign amazonLink = linkz[1] %}
+
+	{% endif %}
+
+{% endfor %}
+
 <div class="product-template__container page-width"
   id="ProductSection-{{ section.id }}"
   data-section-id="{{ section.id }}"
@@ -135,11 +146,17 @@
       <div class="product-single__meta">
 
         <h1 class="product-single__title">{{ product.title }}</h1>
+        {% if isAffiliated != true %}
+          <h1>⭐⭐⭐⭐⭐</h1>
+        {% endif %}
+
         <script>window.performance.mark('debut:product:title_visible');</script>
 
+        {% if isAffiliated != true %}
           <div class="product__price">
             {% include 'product-price', variant: current_variant, show_vendor: section.settings.show_vendor %}
           </div>
+        {%endif%}
 
           {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
             <div class="product__policies rte" data-product-policies>
@@ -217,6 +234,7 @@
                 {%- if section.settings.enable_payment_button %} product-form__item--payment-button {%- endif -%}
                 {%- if product.has_only_default_variant %} product-form__item--no-variants {%- endif -%}"
               >
+              {% if isAffiliated != true %}
                 <button type="submit" name="add"
                   {% unless current_variant.available %} aria-disabled="true"{% endunless %}
                   aria-label="{% unless current_variant.available %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}"
@@ -234,9 +252,17 @@
                     {% include 'icon-spinner' %}
                   </span>
                 </button>
+
                 {% if section.settings.enable_payment_button %}
                   {{ form | payment_button }}
                 {% endif %}
+
+              {% else %}
+
+                <a style="background: blue; color: white; padding: 1rem" target="_blank" href= {{amazonLink}}> Buy on Amazon </a>
+
+              {% endif %}
+
               </div>
             </div>
           {% endform %}
