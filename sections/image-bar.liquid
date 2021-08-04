@@ -1,4 +1,10 @@
 
+
+  <h1 style="text-align:center">{{section.settings.heading}}</h1>
+
+
+
+
 <div class="grid grid--no-gutters image-bar image-bar--{{ section.settings.section_height }}">
 
   {% case section.blocks.size %}
@@ -92,6 +98,11 @@
   "class": "index-section index-section--flush",
   "max_blocks": 4,
   "settings": [
+    {
+      "type": "text",
+      "label": "Head Line for Gallery",
+      "id": "heading"
+    },
     {
       "type": "select",
       "id": "section_height",
