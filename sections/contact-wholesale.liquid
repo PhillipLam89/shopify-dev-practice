@@ -43,15 +43,19 @@
       </div>
     </div>
 
+      {% if section.settings.businessTypes != blank %}
 
-      <label for="{{ formId }}-biz-type">Type of Business</label>
-      <select id="{{ formId }}-biz-type" name = "contact[business type]">
-        <option value="Retail"></option>
-        <option value="Specialty">Specialty</option>
-        <option value="Custom Made">Distributor</option>
-        <option value="Construction">E-Commerce</option>
-      </select>
 
+        {% assign businessArray = section.settings.businessTypes | split: "," %}
+        <label for="{{ formId }}-biz-type">Type of Business</label>
+        <select id="{{ formId }}-biz-type" name = "contact[business type]">
+          {% for types in businessArray %}
+            <option value="Retail">{{types}}</option>
+          {% endfor %}
+        </select>
+
+
+      {% endif %}
 
     <label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }}</label>
     <input type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
