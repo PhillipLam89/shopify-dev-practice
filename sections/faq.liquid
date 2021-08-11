@@ -1,25 +1,24 @@
-<h1>{{section.settings.heading}}</h1>
 
-<h3>{{section.settings.CustomerQuestion}}</h3>
-<p>{{section.settings.Answer}}</p>
+{% for block in section.blocks %}
+ <h1>{{block.settings.question}}</h1>
+ <p>{{block.settings.answer}}</p>
+{% endfor %}
 {% schema %}
   {
-    "name": "Customer Questions",
-    "settings": [{
-      "type": "text",
-      "label": "FAQ Heading",
-      "id": "heading"
-    },
-    {
-      "type": "text",
-      "label": "Enter Question",
-      "id": "CustomerQuestion"
-    },
-    {
-      "type": "textarea",
-      "label": "Answer",
-      "id": "Answer"
-    }
-    ]
-  }
-{% endschema %}
+    "blocks": [{
+      "type": "QAs",
+      "name": "Question/Answer",
+      "settings": [
+        {
+        "type": "text",
+        "label": "Customer Questions",
+        "id": "question"
+        },
+        {
+        "type": "richtext",
+        "label": "answers",
+        "id": "answer"
+        }]
+  }]
+}
+ {% endschema %}

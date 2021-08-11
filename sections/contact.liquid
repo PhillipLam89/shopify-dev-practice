@@ -38,7 +38,7 @@
     <input type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
 
    {% if section.settings.toggleOrderNumber == true %}
-    <label for="{{ formId }}-orderNumber">Order #</label>
+    <label for="{{ formId }}-orderNumber">{{'customizations.faq.order_number' | t }}</label>
     <input type="text" id="{{ formId }}-orderNumber" name="contact[Order Numberz]">
    {% endif %}
 

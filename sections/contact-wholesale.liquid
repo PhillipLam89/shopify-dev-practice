@@ -1,3 +1,5 @@
+
+
 <div class="contact-form form-vertical">
   {%- assign formId = 'ContactForm' -%}
   {% form 'contact', id: formId %}
@@ -34,26 +36,25 @@
       </div>
 
       <div class="grid__item medium-up--one-half">
-        <label for="{{ formId }}-biz-name">Business Name</label>
+        <label for="{{ formId }}-biz-name">{{'customizations.wholesale.business_name' | t }}</label>
         <input type="text" id="{{ formId }}-biz-name" name="contact[business-name]" value="">
       </div>
       <div class="grid__item medium-up--one-half">
-        <label for="{{ formId }}-site">Website</label>
+        <label for="{{ formId }}-site">{{'customizations.wholesale.website' | t }}</label>
         <input type="text" id="{{ formId }}-site" name="contact[website]" value="">
       </div>
     </div>
 
       {% if section.settings.businessTypes != blank %}
 
-
         {% assign businessArray = section.settings.businessTypes | split: "," %}
-        <label for="{{ formId }}-biz-type">Type of Business</label>
+
+        <label for="{{ formId }}-biz-type">{{'customizations.wholesale.business_type' | t }}</label>
         <select id="{{ formId }}-biz-type" name = "contact[business type]">
           {% for types in businessArray %}
-            <option value="Retail">{{types}}</option>
+            <option value="{{types}}">{{types}}</option>
           {% endfor %}
         </select>
-
 
       {% endif %}
 
